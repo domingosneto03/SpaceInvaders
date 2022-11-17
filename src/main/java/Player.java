@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class Player extends Element{
-    Player(List<Position> positions) {
-        super(positions);
+    Player(List<Char> chars, MovimentType Mtype) {
+        super(chars, Mtype);
     }
 }
