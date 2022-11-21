@@ -7,10 +7,11 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Game {
     private Screen screen;
-    Position position = new Position(30,29);
+
     public Game() {
         try {
             TerminalSize terminalSize = new TerminalSize(60, 30);
@@ -27,12 +28,12 @@ public class Game {
             e.printStackTrace();
         }
     }
-    private void draw() throws IOException {
+    private void draw(Player player) throws IOException {
         screen.clear();
-        screen.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter(Symbols.SPADES)[0]);
+        player.Draw(screen);
         screen.refresh();
     }
     public void run() throws IOException{
-        draw();
+        draw(player);
     }
 }

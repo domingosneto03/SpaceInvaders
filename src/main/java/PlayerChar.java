@@ -1,6 +1,5 @@
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.*;
+import com.googlecode.lanterna.screen.Screen;
 
 public class PlayerChar implements Char{
     private  int colour;
@@ -13,10 +12,8 @@ public class PlayerChar implements Char{
     }
 
     @Override
-    public void Draw() {
-        graphics.setForegroundColor(TextColor.Factory.fromString(colour));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), symbol);
+    public void Draw(Screen screen) {
+        screen.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter(symbol)[0]);
     }
 
     public PlayerChar(char symbol, int colour, Position position){
