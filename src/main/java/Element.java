@@ -14,4 +14,9 @@ public class Element implements Char{
             Mtype.move(c);
         }
     }
+    public void Draw() {
+        for(Char c : chars) {
+            c.Draw();
+        }
+    }
 }
