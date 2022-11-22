@@ -21,4 +21,7 @@ public class Element implements Char{
             c.Draw(screen);
         }
     }
+    public List<Char> getChars() {
+        return chars;
+    }
 }
