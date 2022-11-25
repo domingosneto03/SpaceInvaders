@@ -43,11 +43,26 @@ public class Game {
     private void processKey(com.googlecode.lanterna.input.KeyStroke key){
         System.out.println(key);
         switch (key.getKeyType()) {
-            case ArrowUp    -> player.moveUp();
-            case ArrowDown  -> player.moveDown();
-            case ArrowLeft  -> player.moveLeft();
-            case ArrowRight -> player.moveRight();
-            case Backspace -> player.attack();
+            case ArrowUp:
+                player.moveUp();
+                break;
+            case ArrowDown:
+                player.moveDown();
+                break;
+            case ArrowLeft:
+                player.moveLeft();
+                break;
+            case ArrowRight:
+                player.moveRight();
+                break;
+            case Character:
+                switch (key.getCharacter()) {
+                    case ' ':
+                        player.attack();
+                        break;
+
+                }
+
         }
     }
     private void enemyMove() {
