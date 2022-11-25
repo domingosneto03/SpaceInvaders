@@ -8,6 +8,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
     boolean isGameRunning = true;
@@ -15,10 +16,10 @@ public class Game {
     private Screen screen;
 
     private Player player = new Player(new ArrayList<>());
-
+    private Enemy enemy = new Enemy(new ArrayList<>());
     public Game() {
         try {
-            level = new Level(player,"Tutorial",60,30);
+            level = new Level(player, enemy, "Tutorial",60,30);
             TerminalSize terminalSize = new TerminalSize(60, 30);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
@@ -49,6 +50,15 @@ public class Game {
             case Backspace -> player.attack();
         }
     }
+    private void enemymove() {
+        Random random = new Random();
+        int n = random.nextInt(7);
+        switch(n) {
+            case 1,3,5,6,7 -> enemy.moveDown();
+            case 2,4 -> enemy.moveUp();
+
+        }
+    }
     public void run() throws IOException{
         while(isGameRunning) {
             draw(level);
@@ -58,10 +68,12 @@ public class Game {
             if(keyType == KeyType.EOF)
                 isGameRunning = false;
             else if(keyType == keyType.Character) {
-                if(key.getCharacter() == 'q')
+                if(key.getCharacter() == 'q') {
                     screen.close();
                     isGameRunning = false;
+                }
             }
+            enemymove();
         }
     }
 }
