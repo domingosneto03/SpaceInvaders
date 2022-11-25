@@ -1,6 +1,8 @@
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    boolean isGameRunning = true;
     private Arena arena;
     private Screen screen;
 
@@ -37,6 +40,17 @@ public class Game {
         screen.refresh();
     }
     public void run() throws IOException{
-        draw(arena);
+        while(isGameRunning) {
+            draw(arena);
+            KeyStroke key = screen.readInput();
+            KeyType keyType = key.getKeyType();
+            if(keyType == KeyType.EOF)
+                isGameRunning = false;
+            else if(keyType == keyType.Character) {
+                if(key.getCharacter() == 'q')
+                    screen.close();
+                    isGameRunning = false;
+            }
+        }
     }
 }
