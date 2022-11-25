@@ -1,27 +1,48 @@
-import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.List;
 
-public class Element implements Char{
-    protected List<Char> chars;
-    protected MovimentType Mtype;
-    Element(List<Char> chars, MovimentType Mtype){
-        this.chars = chars;
-        this.Mtype = Mtype;
+public class Element implements GenericChar {
+    protected List<GenericChar> genericChars;
+
+    Element(List<GenericChar> genericChars){
+        this.genericChars = genericChars;
     }
 
     @Override
-    public void move() {
-        for(Char c : chars){
-            Mtype.move(c);
+    public void moveUp() {
+        for(GenericChar c : genericChars){
+            c.moveUp();
         }
     }
-    public void Draw(Screen screen) {
-        for(Char c : chars) {
-            c.Draw(screen);
+
+    @Override
+    public void moveDown() {
+        for(GenericChar c : genericChars){
+            c.moveDown();
         }
     }
-    public List<Char> getChars() {
-        return chars;
+
+    @Override
+    public void moveLeft() {
+        for(GenericChar c : genericChars){
+            c.moveLeft();
+        }
+    }
+
+    @Override
+    public void moveRight() {
+        for(GenericChar c : genericChars){
+            c.moveRight();
+        }
+    }
+
+    public void draw(TextGraphics graphics) {
+        for(GenericChar c : genericChars) {
+            c.draw(graphics);
+        }
+    }
+    public List<GenericChar> getChars() {
+        return genericChars;
     }
 }

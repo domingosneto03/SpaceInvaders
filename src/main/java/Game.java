@@ -1,6 +1,6 @@
-import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -8,18 +8,17 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
-    private Player player = new Player(new ArrayList<>(), null); //tem de se meter na arena/nivel depois
+    boolean isGameRunning = true;
+    private Level level;
     private Screen screen;
+
+    private Player player = new Player(new ArrayList<>());
 
     public Game() {
         try {
-            player.getChars().add(new PlayerChar((char)'\u2660', 0, new Position(30, 29)));
-            player.getChars().add(new PlayerChar((char)'\u2660', 0, new Position(30, 28)));  //que xaxada de nave XD
-            player.getChars().add(new PlayerChar((char)'\u2660', 0, new Position(29, 29)));
-            player.getChars().add(new PlayerChar((char)'\u2660', 0, new Position(31, 29)));
+            level = new Level(player,"Tutorial",60,30);
             TerminalSize terminalSize = new TerminalSize(60, 30);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
@@ -34,12 +33,35 @@ public class Game {
             e.printStackTrace();
         }
     }
-    private void draw(Player player) throws IOException {
+    private void draw(Level level) throws IOException {
         screen.clear();
-        player.Draw(screen);
+        level.draw(screen.newTextGraphics());
         screen.refresh();
     }
+
+    private void processKey(com.googlecode.lanterna.input.KeyStroke key){
+        System.out.println(key);
+        switch (key.getKeyType()) {
+            case ArrowUp    -> player.moveUp();
+            case ArrowDown  -> player.moveDown();
+            case ArrowLeft  -> player.moveLeft();
+            case ArrowRight -> player.moveRight();
+            //case Backspace -> player.attack();
+        }
+    }
     public void run() throws IOException{
-        draw(player);
+        while(isGameRunning) {
+            draw(level);
+            KeyStroke key = screen.readInput();
+            KeyType keyType = key.getKeyType();
+            processKey(key);
+            if(keyType == KeyType.EOF)
+                isGameRunning = false;
+            else if(keyType == keyType.Character) {
+                if(key.getCharacter() == 'q')
+                    screen.close();
+                    isGameRunning = false;
+            }
+        }
     }
 }
