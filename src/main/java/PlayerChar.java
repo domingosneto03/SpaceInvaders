@@ -1,4 +1,5 @@
 import com.googlecode.lanterna.*;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
 public class PlayerChar implements Char{
@@ -12,8 +13,9 @@ public class PlayerChar implements Char{
     }
 
     @Override
-    public void Draw(Screen screen) {
-        screen.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter(symbol)[0]);
+    public void Draw(TextGraphics graphics) {
+        graphics.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter(symbol)[0]);
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#0c164f")); //tentei remover o fundo preto, mas até parece uma nave
     }
 
     public PlayerChar(char symbol, int colour, Position position){

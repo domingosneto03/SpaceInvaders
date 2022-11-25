@@ -11,15 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private Player player = new Player(new ArrayList<>(), null); //tem de se meter na arena/nivel depois
+    private Arena arena;
     private Screen screen;
 
     public Game() {
         try {
-            player.getChars().add(new PlayerChar((char)'\u2660', 0, new Position(30, 29)));
-            player.getChars().add(new PlayerChar((char)'\u2660', 0, new Position(30, 28)));  //que xaxada de nave XD
-            player.getChars().add(new PlayerChar((char)'\u2660', 0, new Position(29, 29)));
-            player.getChars().add(new PlayerChar((char)'\u2660', 0, new Position(31, 29)));
+            arena = new Arena(60,30);
             TerminalSize terminalSize = new TerminalSize(60, 30);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
@@ -34,12 +31,12 @@ public class Game {
             e.printStackTrace();
         }
     }
-    private void draw(Player player) throws IOException {
+    private void draw(Arena arena) throws IOException {
         screen.clear();
-        player.Draw(screen);
+        arena.draw(screen.newTextGraphics());
         screen.refresh();
     }
     public void run() throws IOException{
-        draw(player);
+        draw(arena);
     }
 }

@@ -1,3 +1,4 @@
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
 import java.util.List;
@@ -16,9 +17,9 @@ public class Element implements Char{
             Mtype.move(c);
         }
     }
-    public void Draw(Screen screen) {
+    public void Draw(TextGraphics graphics) {
         for(Char c : chars) {
-            c.Draw(screen);
+            c.Draw(graphics);
         }
     }
     public List<Char> getChars() {
