@@ -4,8 +4,9 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Level {
+public class Level implements GenericLevel{
 
     private String name;
     private int width;
@@ -67,6 +68,8 @@ public class Level {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#0c164f"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         player.draw(graphics);
+        player.bulletMove(graphics);
         enemy.draw(graphics);
+
     }
 }
