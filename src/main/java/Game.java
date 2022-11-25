@@ -50,7 +50,7 @@ public class Game {
             case Backspace -> player.attack();
         }
     }
-    private void enemymove() {
+    private void enemyMove() {
         Random random = new Random();
         int n = random.nextInt(7);
         switch(n) {
@@ -73,7 +73,7 @@ public class Game {
                     isGameRunning = false;
                 }
             }
-            enemymove();
+            enemyMove();
         }
     }
 }

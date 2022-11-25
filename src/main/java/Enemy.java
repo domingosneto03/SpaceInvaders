@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class Enemy extends Element{
-    Enemy(List<GenericChar> genericChars) {
+    Enemy(List<Char> genericChars) {
         super(genericChars);
     }
 }
