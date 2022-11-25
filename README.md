@@ -26,10 +26,10 @@ A UML class diagram showcasing used Design Patterns:
 
 ### DESIGN PATTERNS
 
->**Implemented:** 
+>**Implemented:** We have implemented the **Composite Design Pattern** in the functioning of our **Element** and **Char** classes, both have **draw()** and **move()** methods that run correctly either if we take an individual approach of moving a single **Char** or a collective approach of moving all characters that constitute an **Element**.
 
 
->**To Implement:**
+>**To Implement:** We plan on implementing the **Strategy Design Pattern** to our **Bullet** class, in order to create different types of bullets.
 
 ------
 
