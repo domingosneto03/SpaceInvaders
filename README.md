@@ -1,7 +1,7 @@
-## LDTS_T11G03 - Space Invaders
+## LPOO_T11G03 - Space Invaders
 
 > This project is intended to recreate one of the most iconic games of the 80´s, Space Invaders. In this game you help humanity from aliens by destroying as many spaceships as you can.
-> This project was developed by *Luís Contreiras* (*up202108742*@fe.up.pt) , *Diogo Santos* (*up202108747*@fe.up.pt) e *Domingos Neto* (*up202108728*@fe.up.pt) for LDTS 2022/23.
+> This project was developed by *Luís Contreiras* (*up202108742*@fe.up.pt) , *Diogo Santos* (*up202108747*@fe.up.pt) e *Domingos Neto* (*up202108728*@fe.up.pt) for LP00 2022/23.
 
 
 ### FEATURES
