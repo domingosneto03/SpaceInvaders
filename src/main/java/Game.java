@@ -61,8 +61,7 @@ public class Game {
                         player.attack();
                         break;
 
-                }
-
+            }
         }
     }
     private void enemyMove() {
