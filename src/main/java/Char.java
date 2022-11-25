@@ -38,4 +38,8 @@ public class Char implements GenericChar {
         this.colour = colour;
         this.position = position;
     }
+
+    public Position getPosition() {
+        return position;
+    }
 }

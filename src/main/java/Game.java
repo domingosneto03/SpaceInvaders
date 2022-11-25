@@ -46,7 +46,7 @@ public class Game {
             case ArrowDown  -> player.moveDown();
             case ArrowLeft  -> player.moveLeft();
             case ArrowRight -> player.moveRight();
-            //case Backspace -> player.attack();
+            case Backspace -> player.attack();
         }
     }
     public void run() throws IOException{
