@@ -19,12 +19,17 @@ public class Level implements GenericLevel{
     private Player player;
     private Enemy enemy;
 
-    public Level(Player player, Enemy enemy, String name,int width, int height) {
-        this.player = player;
-        this.enemy = enemy;
+    private TextGraphics graphics;
+
+    public Level(String name,int width, int height,TextGraphics graphics) {
+        this.graphics = graphics;
+        this.player = new Player(new ArrayList<>());
+        this.enemy = new Enemy(new ArrayList<>());
         this.name = name;
         this.width = width;
         this.height = height;
+
+        //player
         player.getChars().add(new Char((char)'\u2660', 0, new Position(30, 29)));
         player.getChars().add(new Char((char)'\u2660', 0, new Position(30, 28)));
         player.getChars().add(new Char((char)'\u2660', 0, new Position(29, 29)));
@@ -68,9 +73,9 @@ public class Level implements GenericLevel{
 
 
     }
-    public void draw(TextGraphics graphics) {
+    public void draw() {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#0c164f"));
-        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 0),graphics.getSize(), ' ');
         player.draw(graphics);
         player.bulletMove(graphics);
         enemy.draw(graphics);
