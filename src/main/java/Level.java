@@ -2,9 +2,13 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Level implements GenericLevel{
 
@@ -71,5 +75,35 @@ public class Level implements GenericLevel{
         player.bulletMove(graphics);
         enemy.draw(graphics);
 
+    }
+
+    public void movePlayer(ACTION action) {
+        switch (action) {
+            case UP:
+                player.moveUp();
+                break;
+            case RIGHT:
+                player.moveRight();
+                break;
+            case DOWN:
+                player.moveDown();
+                break;
+            case LEFT:
+                player.moveLeft();
+                break;
+            case SELECT:
+                player.attack();
+                break;
+        }
+    }
+
+
+    public void moveEnemy() {
+        Random random = new Random();
+        int n = random.nextInt(7);
+        switch(n) {
+            case 1,3,5,6,7 -> enemy.moveDown();
+            case 2,4 -> enemy.moveUp();
+        }
     }
 }
