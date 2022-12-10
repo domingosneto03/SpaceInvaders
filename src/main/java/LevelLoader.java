@@ -76,7 +76,7 @@ public class LevelLoader {
                 if(Character.isSpaceChar(line.charAt(x))) {
                     continue;
                 }
-                chars.add(new Char(line.charAt(x),"#27EA19", new Position(x+n_x, y+n_y)));
+                chars.add(new Char(line.charAt(x),"#FFFFFF", new Position(x+n_x, y+n_y)));
             }
         }
         return chars;

@@ -51,7 +51,7 @@ public class Element implements GenericChar {
     }
 
     public void attack(){
-        Bullet bullet = new Bullet((char)'\u2660', "#FFFFFF",new Position(Chars.get(1).getPosition().getX(),Chars.get(1).getPosition().getY()-1));
+        Bullet bullet = new Bullet('█', "#FFFFFF",new Position(Chars.get(1).getPosition().getX()+1,Chars.get(1).getPosition().getY()-2));
         bullets.add(bullet);
     }
 

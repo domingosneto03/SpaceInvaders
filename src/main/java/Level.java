@@ -75,4 +75,5 @@ public class Level implements GenericLevel{
                 enemy1.moveRight();enemy2.moveRight();
         }
     }
+
 }

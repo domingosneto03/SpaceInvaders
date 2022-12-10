@@ -1,3 +1,4 @@
+import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -6,6 +7,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
 import java.awt.*;
 import java.io.File;
@@ -34,17 +36,18 @@ public class Game {
 
     private Terminal createTerminal(int width, int height) throws IOException {
         TerminalSize terminalSize = new TerminalSize(width, height);
+        SwingTerminalFontConfiguration fontConfiguration = SwingTerminalFontConfiguration.getDefaultOfSize(20);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
-                .setInitialTerminalSize(terminalSize);
+                .setInitialTerminalSize(terminalSize).setTerminalEmulatorFontConfiguration(fontConfiguration);
         Terminal terminal = terminalFactory.createTerminal();
         return terminal;
     }
 
     public Game() throws IOException{
         status = GameStatus.RUNNING;
-        Terminal terminal = createTerminal(60, 30);
+        Terminal terminal = createTerminal(300, 100);
         this.screen = createScreen(terminal);
-        level = new Level("Tutorial",60,30,screen.newTextGraphics());
+        level = new Level("Tutorial",300,100,screen.newTextGraphics());
 
     }
     private void draw(GenericLevel level) throws IOException {
