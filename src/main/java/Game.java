@@ -90,8 +90,7 @@ public class Game {
         while(isGameRunning()) {
             draw(level);
             try {
-                var lag = new Random().nextInt(200) + 50;
-                Thread.sleep(lag);
+                Thread.sleep(1000/60);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
