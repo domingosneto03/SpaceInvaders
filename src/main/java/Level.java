@@ -16,6 +16,7 @@ public class Level implements GenericLevel{
     private int width;
     private int height;
 
+    boolean borderLeft;
     private Player player;
     private Enemy enemy1;
 
@@ -28,12 +29,13 @@ public class Level implements GenericLevel{
     public Level(String name,int width, int height,TextGraphics graphics) throws IOException {
         this.graphics = graphics;
         this.loader = new LevelLoader();
-        this.player = new Player(loader.getPlayerChars(21,21));
+        this.player = new Player(loader.getPlayerChars(41,41));
         this.enemy1 = new Enemy(loader.getEnemy1Chars(0,0));
         this.enemy2 = new Enemy(loader.getEnemy2Chars(12,0));
         this.name = name;
         this.width = width;
         this.height = height;
+        this.borderLeft = true;
     }
     public void draw() {
         graphics.fillRectangle(new TerminalPosition(0, 0),graphics.getSize(), ' ');
@@ -63,16 +65,32 @@ public class Level implements GenericLevel{
                 break;
         }
     }
+    public void checkColisions(){
+    }
 
+    public void moveEnemy() throws InterruptedException {
+        if(enemy1.getChars().get(0).getPosition().getX()==3){
+            borderLeft = true;
+            enemy1.moveDown();
+            enemy2.moveDown();
+            enemy2.moveRight();
+            enemy1.moveRight();
+        }
+        if(enemy2.getChars().get(enemy2.getChars().size()-1).getPosition().getX()==width-1){
+            borderLeft = false;
+            enemy1.moveDown();
+            enemy2.moveDown();
+            enemy1.moveLeft();
+            enemy2.moveLeft();
+        }
+        if(borderLeft == true){
+            enemy1.moveRight();
+            enemy2.moveRight();
+        }
 
-    public void moveEnemy() {
-        Random random = new Random();
-        int n = random.nextInt(7);
-        switch(n) {
-            case 1,3,5,6,7:
-                enemy1.moveLeft(); enemy2.moveLeft();
-            case 2,4:
-                enemy1.moveRight();enemy2.moveRight();
+        else {
+            enemy1.moveLeft();
+            enemy2.moveLeft();
         }
     }
 

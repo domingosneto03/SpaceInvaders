@@ -45,9 +45,9 @@ public class Game {
 
     public Game() throws IOException{
         status = GameStatus.RUNNING;
-        Terminal terminal = createTerminal(300, 100);
+        Terminal terminal = createTerminal(100, 50);
         this.screen = createScreen(terminal);
-        level = new Level("Tutorial",300,100,screen.newTextGraphics());
+        level = new Level("Tutorial",100,50,screen.newTextGraphics());
 
     }
     private void draw(GenericLevel level) throws IOException {
@@ -86,7 +86,7 @@ public class Game {
 
         return ACTION.NONE;
     }
-    public void run() throws IOException{
+    public void run() throws IOException, InterruptedException {
         while(isGameRunning()) {
             draw(level);
             try {
