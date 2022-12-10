@@ -8,41 +8,55 @@ import java.util.List;
 public class LevelLoader {
 
 
-    private final List<Char> playerChars;
+    BufferedReader br_player;
 
-    public List<Char> getPlayerChars() {
-        return playerChars;
+    public List<Char> getPlayerChars(int x,int y) throws IOException {
+        return createElement(readLines(br_player),x,y);
     }
 
-    private final List<Char> enemy1Chars;
+    BufferedReader br_enemy1;
 
-    public List<Char> getEnemy1Chars() {
-        return enemy1Chars;
+    public List<Char> getEnemy1Chars(int x,int y) throws IOException {
+        return createElement(readLines(br_enemy1),x,y);
     }
 
-    private final List<Char> enemy2Chars;
+    BufferedReader br_enemy2;
 
-    public List<Char> getEnemy2Chars() {
-        return enemy2Chars;
+    public List<Char> getEnemy2Chars(int x,int y) throws IOException {
+        return createElement(readLines(br_enemy2),x,y);
     }
 
+    BufferedReader br_enemy3;
+
+    public List<Char> getEnemy3Chars(int x,int y) throws IOException {
+        return createElement(readLines(br_enemy3),x,y);
+    }
+
+    BufferedReader br_enemy4;
+
+    public List<Char> getEnemy4Chars(int x,int y) throws IOException {
+        return createElement(readLines(br_enemy4),x,y);
+    }
+
+    BufferedReader br_enemy5;
+
+    public List<Char> getEnemy5Chars(int x,int y) throws IOException {
+        return createElement(readLines(br_enemy5),x,y);
+    }
     public LevelLoader() throws IOException {
         URL player = LevelLoader.class.getResource("/elements/player.txt");
-        BufferedReader br_player = new BufferedReader(new FileReader(player.getFile()));
+        br_player = new BufferedReader(new FileReader(player.getFile()));
         URL enemy1 = LevelLoader.class.getResource("/elements/enemy1.txt");
-        BufferedReader br_enemy1 = new BufferedReader(new FileReader(enemy1.getFile()));
+        br_enemy1 = new BufferedReader(new FileReader(enemy1.getFile()));
         URL enemy2 = LevelLoader.class.getResource("/elements/enemy2.txt");
-        BufferedReader br_enemy2 = new BufferedReader(new FileReader(enemy2.getFile()));
+        br_enemy2 = new BufferedReader(new FileReader(enemy2.getFile()));
         URL enemy3 = LevelLoader.class.getResource("/elements/enemy3.txt");
-        BufferedReader br_enemy3 = new BufferedReader(new FileReader(enemy3.getFile()));
+        br_enemy3 = new BufferedReader(new FileReader(enemy3.getFile()));
         URL enemy4 = LevelLoader.class.getResource("/elements/enemy4.txt");
-        BufferedReader br_enemy4 = new BufferedReader(new FileReader(enemy4.getFile()));
+        br_enemy4 = new BufferedReader(new FileReader(enemy4.getFile()));
         URL enemy5 = LevelLoader.class.getResource("/elements/enemy5.txt");
-        BufferedReader br_enemy5 = new BufferedReader(new FileReader(enemy5.getFile()));
+        br_enemy5 = new BufferedReader(new FileReader(enemy5.getFile()));
 
-        playerChars = createElement(readLines(br_player),21,21);
-        enemy1Chars = createElement(readLines(br_enemy1),0,0);
-        enemy2Chars = createElement(readLines(br_enemy2),12,0);
     }
 
     private List<String> readLines(BufferedReader br) throws IOException {

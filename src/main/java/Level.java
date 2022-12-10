@@ -28,9 +28,9 @@ public class Level implements GenericLevel{
     public Level(String name,int width, int height,TextGraphics graphics) throws IOException {
         this.graphics = graphics;
         this.loader = new LevelLoader();
-        this.player = new Player(loader.getPlayerChars());
-        this.enemy1 = new Enemy(loader.getEnemy1Chars());
-        this.enemy2 = new Enemy(loader.getEnemy2Chars());
+        this.player = new Player(loader.getPlayerChars(21,21));
+        this.enemy1 = new Enemy(loader.getEnemy1Chars(0,0));
+        this.enemy2 = new Enemy(loader.getEnemy2Chars(12,0));
         this.name = name;
         this.width = width;
         this.height = height;
@@ -69,8 +69,10 @@ public class Level implements GenericLevel{
         Random random = new Random();
         int n = random.nextInt(7);
         switch(n) {
-            case 1,3,5,6,7 -> enemy1.moveDown();
-            case 2,4 -> enemy1.moveUp();
+            case 1,3,5,6,7:
+                enemy1.moveLeft(); enemy2.moveLeft();
+            case 2,4:
+                enemy1.moveRight();enemy2.moveRight();
         }
     }
 }
