@@ -6,7 +6,8 @@ import java.util.List;
 public class Element implements GenericChar {
     protected List<Char> Chars;
 
-    protected List<Bullet> bullets;
+
+    protected List<Char> bullets;
 
     Element(List<Char> Chars){
         this.Chars = Chars;
@@ -50,15 +51,25 @@ public class Element implements GenericChar {
         return Chars;
     }
 
+    public List<Char> getBullets() {
+        return bullets;
+    }
+
     public void attack(){
-        Bullet bullet = new Bullet((char)'\u2660', 2222,new Position(Chars.get(1).getPosition().getX(),Chars.get(1).getPosition().getY()-1));
+        Char bullet = new Char('█', "#FFFFFF",new Position(Chars.get(1).getPosition().getX()+1,Chars.get(1).getPosition().getY()-2));
         bullets.add(bullet);
     }
 
     public void bulletMove(TextGraphics graphics){
-        for(Bullet b : bullets){
-            b.draw(graphics);
-            b.moveUp();
+        for(int i = 0;i < bullets.size();i++){
+            if(bullets.get(i).getPosition().getY()>0) {
+                bullets.get(i).draw(graphics);
+                bullets.get(i).moveUp();
+            }
+            else{
+                bullets.remove(i);
+                i--;
+            }
         }
     }
 }

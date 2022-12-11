@@ -2,7 +2,7 @@ import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Char implements GenericChar {
-    private  int colour;
+    private  TextColor color;
     private char symbol;
     private Position position;
 
@@ -29,13 +29,12 @@ public class Char implements GenericChar {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter(symbol)[0]);
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#0c164f"));
+        graphics.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter(symbol,color,TextColor.Factory.fromString("#000000"))[0]);
     }
 
-    public Char(char symbol, int colour, Position position){
+    public Char(char symbol, String color, Position position){
         this.symbol = symbol;
-        this.colour = colour;
+        this.color = TextColor.Factory.fromString(color);
         this.position = position;
     }
 

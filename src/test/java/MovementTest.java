@@ -13,7 +13,7 @@ class MovementTest {
     private Char chars;
     @BeforeEach
     void helper() {
-        chars = new Char('\u2660', 0, new Position(25, 25));
+        chars = new Char('\u2660', "#FFFFFF", new Position(25, 25));
     }
     @Test
     void moveUp() {

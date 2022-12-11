@@ -1,3 +1,4 @@
+import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -5,41 +6,53 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
 
     protected volatile GameStatus status;
-    private Level level;
+    private GenericLevel level;
     private Screen screen;
 
-    private Player player = new Player(new ArrayList<>());
-    private Enemy enemy = new Enemy(new ArrayList<>());
 
-    public Game() {
-        status = GameStatus.RUNNING;
-        try {
-            level = new Level(player, enemy, "Tutorial",60,30);
-            TerminalSize terminalSize = new TerminalSize(60, 30);
-            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-            Terminal terminal = terminalFactory.createTerminal();
-            screen = new TerminalScreen(terminal);
+    private Screen createScreen(Terminal terminal) throws IOException {
+        final Screen screen;
+        screen = new TerminalScreen(terminal);
 
-            screen.setCursorPosition(null); // we don't need a cursor
-            screen.startScreen(); // screens must be started
-            screen.doResizeIfNecessary(); // resize screen if necessary
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        screen.setCursorPosition(null);
+        screen.startScreen();
+        screen.doResizeIfNecessary();
+        return screen;
     }
-    private void draw(Level level) throws IOException {
+
+    private Terminal createTerminal(int width, int height) throws IOException {
+        TerminalSize terminalSize = new TerminalSize(width, height);
+        SwingTerminalFontConfiguration fontConfiguration = SwingTerminalFontConfiguration.getDefaultOfSize(20);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
+                .setInitialTerminalSize(terminalSize).setTerminalEmulatorFontConfiguration(fontConfiguration);
+        Terminal terminal = terminalFactory.createTerminal();
+        return terminal;
+    }
+
+    public Game() throws IOException{
+        status = GameStatus.RUNNING;
+        Terminal terminal = createTerminal(100, 50);
+        this.screen = createScreen(terminal);
+        level = new Level("Tutorial",100,50,screen.newTextGraphics());
+
+    }
+    private void draw(GenericLevel level) throws IOException {
         screen.clear();
-        level.draw(screen.newTextGraphics());
+        level.draw();
         screen.refresh();
     }
 
@@ -62,7 +75,7 @@ public class Game {
         if (keyStroke == null) return ACTION.NONE;
 
         if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
-        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
+        if (keyStroke.getKeyType() == KeyType.Character && (keyStroke.getCharacter() == 'q' || keyStroke.getCharacter() == 'Q')) return ACTION.QUIT;
 
         if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.UP;
         if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
@@ -73,12 +86,11 @@ public class Game {
 
         return ACTION.NONE;
     }
-    public void run() throws IOException{
+    public void run() throws IOException, InterruptedException {
         while(isGameRunning()) {
             draw(level);
             try {
-                var lag = new Random().nextInt(200) + 50;
-                Thread.sleep(lag);
+                Thread.sleep(1000/60);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
