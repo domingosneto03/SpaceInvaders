@@ -1,14 +1,7 @@
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Level implements GenericLevel{
 
@@ -16,7 +9,7 @@ public class Level implements GenericLevel{
     private int width;
     private int height;
 
-    boolean borderLeft;
+    private boolean borderLeft;
     private Player player;
     private Enemy enemy1;
 
@@ -26,7 +19,7 @@ public class Level implements GenericLevel{
 
     private TextGraphics graphics;
 
-    public Level(String name,int width, int height,TextGraphics graphics) throws IOException {
+    public Level(String name,int width, int height, TextGraphics graphics) throws IOException {
         this.graphics = graphics;
         this.loader = new LevelLoader();
         this.player = new Player(loader.getPlayerChars(41,41));
@@ -38,7 +31,7 @@ public class Level implements GenericLevel{
         this.borderLeft = true;
     }
     public void draw() {
-        graphics.fillRectangle(new TerminalPosition(0, 0),graphics.getSize(), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 0), graphics.getSize(), ' ');
         player.draw(graphics);
         player.bulletMove(graphics);
         enemy1.draw(graphics);
