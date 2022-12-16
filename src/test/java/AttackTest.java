@@ -1,35 +1,20 @@
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.io.IOException;
 
 class AttackTest {
     private Player player_;
     private TextGraphics graphics_;
-    private LevelLoader loader_;
 
     @BeforeEach
     void helper() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(100, 50);
-        SwingTerminalFontConfiguration fontConfiguration = SwingTerminalFontConfiguration.getDefaultOfSize(20);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
-                .setInitialTerminalSize(terminalSize).setTerminalEmulatorFontConfiguration(fontConfiguration);
-        Terminal terminal = terminalFactory.createTerminal();
-        Screen screen_ = new TerminalScreen(terminal);
-        screen_.setCursorPosition(null);
-        screen_.startScreen();
-        screen_.doResizeIfNecessary();
-        loader_ = new LevelLoader();
+        LevelLoader loader_ = new LevelLoader();
         player_ = new Player(loader_.getPlayerChars(25,25));
-        graphics_ = screen_.newTextGraphics();
+        graphics_ = Mockito.mock(TextGraphics.class);
     }
 
     @Test

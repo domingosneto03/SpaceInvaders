@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelLoader {
-
-
     BufferedReader br_player;
 
     public List<Char> getPlayerChars(int x,int y) throws IOException {
@@ -56,7 +54,6 @@ public class LevelLoader {
         br_enemy4 = new BufferedReader(new FileReader(enemy4.getFile()));
         URL enemy5 = LevelLoader.class.getResource("/elements/enemy5.txt");
         br_enemy5 = new BufferedReader(new FileReader(enemy5.getFile()));
-
     }
 
     private List<String> readLines(BufferedReader br) throws IOException {
