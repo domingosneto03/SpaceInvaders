@@ -5,11 +5,30 @@ import java.util.List;
 
 public class Element implements GenericChar {
     protected List<Char> Chars;
+
+    public void setChars(List<Char> chars) {
+        Chars = chars;
+    }
+
     protected List<Char> bullets;
+
+    protected Position i;
+
+    protected Position f;
+
+    public Position getI() {
+        return i;
+    }
+
+    public Position getF() {
+        return f;
+    }
 
     Element(List<Char> Chars){
         this.Chars = Chars;
         bullets = new ArrayList<>();
+        i = Chars.get(0).getPosition();
+        f = Chars.get(Chars.size()-1).getPosition();
     }
 
     @Override
@@ -17,6 +36,8 @@ public class Element implements GenericChar {
         for(GenericChar c : Chars){
             c.moveUp();
         }
+        i = Chars.get(0).getPosition();
+        f = Chars.get(Chars.size()-1).getPosition();
     }
 
     @Override
@@ -24,6 +45,8 @@ public class Element implements GenericChar {
         for(GenericChar c : Chars){
             c.moveDown();
         }
+        i = Chars.get(0).getPosition();
+        f = Chars.get(Chars.size()-1).getPosition();
     }
 
     @Override
@@ -31,6 +54,8 @@ public class Element implements GenericChar {
         for(GenericChar c : Chars){
             c.moveLeft();
         }
+        i = Chars.get(0).getPosition();
+        f = Chars.get(Chars.size()-1).getPosition();
     }
 
     @Override
@@ -38,6 +63,8 @@ public class Element implements GenericChar {
         for(GenericChar c : Chars){
             c.moveRight();
         }
+        i = Chars.get(0).getPosition();
+        f = Chars.get(Chars.size()-1).getPosition();
     }
 
     public void draw(TextGraphics graphics) {
@@ -54,8 +81,7 @@ public class Element implements GenericChar {
     }
 
     public void attack(){
-        Char bullet = new Char('.', "#FFFFFF", new Position(Chars.get(0).getPosition().getX(),Chars.get(0).getPosition().getY()-2));
-        bullets.add(bullet);
+
     }
 
     public void bulletMove(TextGraphics graphics){

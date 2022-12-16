@@ -41,6 +41,12 @@ public class LevelLoader {
     public List<Char> getEnemy5Chars(int x,int y) throws IOException {
         return createElement(readLines(br_enemy5),x,y);
     }
+
+    BufferedReader br_explosion;
+
+    public List<Char> getExplosionChars(int x,int y) throws IOException {
+        return createElement(readLines(br_explosion),x,y);
+    }
     public LevelLoader() throws IOException {
         URL player = LevelLoader.class.getResource("/elements/player.txt");
         br_player = new BufferedReader(new FileReader(player.getFile()));
@@ -54,6 +60,8 @@ public class LevelLoader {
         br_enemy4 = new BufferedReader(new FileReader(enemy4.getFile()));
         URL enemy5 = LevelLoader.class.getResource("/elements/enemy5.txt");
         br_enemy5 = new BufferedReader(new FileReader(enemy5.getFile()));
+        URL explosion = LevelLoader.class.getResource("/elements/explosion.txt");
+        br_explosion = new BufferedReader(new FileReader(explosion.getFile()));
     }
 
     private List<String> readLines(BufferedReader br) throws IOException {

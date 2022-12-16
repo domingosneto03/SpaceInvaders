@@ -30,7 +30,7 @@ public class Level implements GenericLevel{
         this.height = height;
         this.borderLeft = true;
     }
-    public void draw() {
+    public void draw(){
         graphics.fillRectangle(new TerminalPosition(0, 0), graphics.getSize(), ' ');
         player.draw(graphics);
         player.bulletMove(graphics);
@@ -58,7 +58,19 @@ public class Level implements GenericLevel{
                 break;
         }
     }
-    public void checkColisions(){
+    public boolean checkColisions(Char bullet,Element element) throws IOException {
+        LevelLoader ld = new LevelLoader();
+        int bx = bullet.getPosition().getX();
+        int by = bullet.getPosition().getY();
+        int exi = element.getI().getX();
+        int eyi = element.getI().getY();
+        int exf = element.getF().getX();
+        int eyf = element.getF().getY();
+        if (bx > exi && bx < exf && by > eyi && by < eyf){
+            element.setChars(ld.getExplosionChars(exi,eyi));
+            return true;
+        }
+        return false;
     }
 
     public void moveEnemy() throws InterruptedException {
