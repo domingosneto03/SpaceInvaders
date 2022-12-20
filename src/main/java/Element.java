@@ -42,6 +42,7 @@ public class Element implements GenericChar {
 
     @Override
     public void moveDown() {
+        if (i.getY()>31) {return;}
         for(GenericChar c : Chars){
             c.moveDown();
         }
@@ -51,6 +52,7 @@ public class Element implements GenericChar {
 
     @Override
     public void moveLeft() {
+        if (i.getX()<3) {return;}
         for(GenericChar c : Chars){
             c.moveLeft();
         }
@@ -60,6 +62,7 @@ public class Element implements GenericChar {
 
     @Override
     public void moveRight() {
+        if (i.getX()>92) {return;}
         for(GenericChar c : Chars){
             c.moveRight();
         }

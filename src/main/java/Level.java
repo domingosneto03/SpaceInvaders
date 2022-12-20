@@ -22,7 +22,7 @@ public class Level implements GenericLevel{
     public Level(String name,int width, int height, TextGraphics graphics) throws IOException {
         this.graphics = graphics;
         this.loader = new LevelLoader();
-        this.player = new Player(loader.getPlayerChars(41,41));
+        this.player = new Player(loader.getPlayerChars(49,32));
         this.enemy1 = new Enemy(loader.getEnemy1Chars(0,0));
         this.enemy2 = new Enemy(loader.getEnemy2Chars(12,0));
         this.name = name;

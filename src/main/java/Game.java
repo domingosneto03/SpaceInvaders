@@ -37,9 +37,9 @@ public class Game {
 
     public Game() throws IOException {
         status = GameStatus.RUNNING;
-        Terminal terminal = createTerminal(100, 50);
+        Terminal terminal = createTerminal(100, 35);
         this.screen = createScreen(terminal);
-        level = new Level("Tutorial",100,50, screen.newTextGraphics());
+        level = new Level("Tutorial",100,35, screen.newTextGraphics());
 
     }
     private void draw(GenericLevel level) throws IOException {

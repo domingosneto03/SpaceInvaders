@@ -4,16 +4,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 class AttackTest {
     private Player player_;
     private TextGraphics graphics_;
 
     @BeforeEach
-    void helper() throws IOException {
-        LevelLoader loader_ = new LevelLoader();
-        player_ = new Player(loader_.getPlayerChars(25,25));
+    void helper() {
+        List<Char> l = new ArrayList<>();
+        l.add(new Char('*', "#FFFFFF", new Position(25, 25)));
+        player_ = new Player(l);
         graphics_ = Mockito.mock(TextGraphics.class);
     }
 
@@ -26,15 +28,15 @@ class AttackTest {
     @Test
     void checkBulletPosition() { //check if bullet spawned in the correct position
         player_.attack();
-        Assertions.assertEquals(player_.getBullets().get(0).getPosition(), new Position(25, 23));
+        Assertions.assertEquals(player_.getBullets().get(0).getPosition(), new Position(27, 23));
     }
 
     @Test
     void bulletMovement() {
-        player_.attack(); //current bullet position here is 25/23
-        player_.bulletMove(graphics_); //bullet has moved to 25/22
-        player_.bulletMove(graphics_); //bullet has moved to 25/21
-        player_.bulletMove(graphics_); //bullet has moved to 25/20
-        Assertions.assertEquals(player_.getBullets().get(0).getPosition(), new Position(25, 20));
+        player_.attack(); //current bullet position here is 27/23
+        player_.bulletMove(graphics_); //bullet has moved to 27/22
+        player_.bulletMove(graphics_); //bullet has moved to 27/21
+        player_.bulletMove(graphics_); //bullet has moved to 27/20
+        Assertions.assertEquals(player_.getBullets().get(0).getPosition(), new Position(27, 20));
     }
 }
