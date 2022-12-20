@@ -1,4 +1,3 @@
-import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -6,16 +5,9 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Random;
 
 public class Game {
 
@@ -43,11 +35,11 @@ public class Game {
         return terminal;
     }
 
-    public Game() throws IOException{
+    public Game() throws IOException {
         status = GameStatus.RUNNING;
-        Terminal terminal = createTerminal(100, 50);
+        Terminal terminal = createTerminal(100, 35);
         this.screen = createScreen(terminal);
-        level = new Level("Tutorial",100,50,screen.newTextGraphics());
+        level = new Level("Tutorial",100,35, screen.newTextGraphics());
 
     }
     private void draw(GenericLevel level) throws IOException {

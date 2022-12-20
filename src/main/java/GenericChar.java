@@ -5,6 +5,5 @@ public interface GenericChar {
     void moveDown();
     void moveLeft();
     void moveRight();
-
     void draw(TextGraphics graphics);
 }

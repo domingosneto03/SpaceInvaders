@@ -1,14 +1,7 @@
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Level implements GenericLevel{
 
@@ -16,7 +9,7 @@ public class Level implements GenericLevel{
     private int width;
     private int height;
 
-    boolean borderLeft;
+    private boolean borderLeft;
     private Player player;
     private Enemy enemy1;
 
@@ -26,10 +19,10 @@ public class Level implements GenericLevel{
 
     private TextGraphics graphics;
 
-    public Level(String name,int width, int height,TextGraphics graphics) throws IOException {
+    public Level(String name,int width, int height, TextGraphics graphics) throws IOException {
         this.graphics = graphics;
         this.loader = new LevelLoader();
-        this.player = new Player(loader.getPlayerChars(41,41));
+        this.player = new Player(loader.getPlayerChars(49,32));
         this.enemy1 = new Enemy(loader.getEnemy1Chars(0,0));
         this.enemy2 = new Enemy(loader.getEnemy2Chars(12,0));
         this.name = name;
@@ -37,8 +30,8 @@ public class Level implements GenericLevel{
         this.height = height;
         this.borderLeft = true;
     }
-    public void draw() {
-        graphics.fillRectangle(new TerminalPosition(0, 0),graphics.getSize(), ' ');
+    public void draw(){
+        graphics.fillRectangle(new TerminalPosition(0, 0), graphics.getSize(), ' ');
         player.draw(graphics);
         player.bulletMove(graphics);
         enemy1.draw(graphics);
@@ -65,7 +58,19 @@ public class Level implements GenericLevel{
                 break;
         }
     }
-    public void checkColisions(){
+    public boolean checkColisions(Char bullet,Element element) throws IOException {
+        LevelLoader ld = new LevelLoader();
+        int bx = bullet.getPosition().getX();
+        int by = bullet.getPosition().getY();
+        int exi = element.getI().getX();
+        int eyi = element.getI().getY();
+        int exf = element.getF().getX();
+        int eyf = element.getF().getY();
+        if (bx > exi && bx < exf && by > eyi && by < eyf){
+            element.setChars(ld.getExplosionChars(exi,eyi));
+            return true;
+        }
+        return false;
     }
 
     public void moveEnemy() throws InterruptedException {
