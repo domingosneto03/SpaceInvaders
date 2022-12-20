@@ -58,20 +58,6 @@ public class Level implements GenericLevel{
                 break;
         }
     }
-    public boolean checkColisions(Char bullet,Element element) throws IOException {
-        LevelLoader ld = new LevelLoader();
-        int bx = bullet.getPosition().getX();
-        int by = bullet.getPosition().getY();
-        int exi = element.getI().getX();
-        int eyi = element.getI().getY();
-        int exf = element.getF().getX();
-        int eyf = element.getF().getY();
-        if (bx > exi && bx < exf && by > eyi && by < eyf){
-            element.setChars(ld.getExplosionChars(exi,eyi));
-            return true;
-        }
-        return false;
-    }
 
     public void moveEnemy() throws InterruptedException {
         if(enemy1.getChars().get(0).getPosition().getX()==3){

@@ -84,7 +84,6 @@ public class Element implements GenericChar {
     }
 
     public void attack(){
-
     }
 
     public void bulletMove(TextGraphics graphics){
@@ -98,5 +97,18 @@ public class Element implements GenericChar {
                 i--;
             }
         }
+    }
+
+    public boolean checkColision(Char b){
+            int bx = b.getPosition().getX();
+            int by = b.getPosition().getY();
+            int exi = i.getX();
+            int eyi = i.getY();
+            int exf = f.getX();
+            int eyf = f.getY();
+            if(bx > exi && bx < exf && by>eyi && by>eyf){
+                return true;
+            }
+        return false;
     }
 }
