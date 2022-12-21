@@ -41,4 +41,8 @@ public class Char implements GenericChar {
     public Position getPosition() {
         return position;
     }
+
+    public char getSymbol() {return symbol;}
+
+    public TextColor getColor() {return color; }
 }

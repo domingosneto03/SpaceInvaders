@@ -23,6 +23,7 @@ class MovementTest {
         p3 = new Player(l3);
         p4 = new Player(l4);
     }
+
     @Test
     void moveUp() {
         p1.moveUp();

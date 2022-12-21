@@ -2,6 +2,8 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Level implements GenericLevel {
 
@@ -15,16 +17,29 @@ public class Level implements GenericLevel {
 
     private Enemy enemy2;
 
+    private List<Enemy> enemys;
+
     private LevelLoader loader;
 
     private TextGraphics graphics;
 
-    public Level(String name,int width, int height, TextGraphics graphics) throws IOException {
+    public Player getPlayer() {
+        return player;
+    }
+
+    public List<Enemy> getEnemys() {
+        return enemys;
+    }
+
+    public Level(String name, int width, int height, TextGraphics graphics) throws IOException {
         this.graphics = graphics;
         this.loader = new LevelLoader();
         this.player = new Player(loader.getPlayerChars(49,32));
         this.enemy1 = new Enemy(loader.getEnemy1Chars(0,0));
         this.enemy2 = new Enemy(loader.getEnemy2Chars(12,0));
+        this.enemys = new ArrayList<>();
+        enemys.add(enemy1);
+        enemys.add(enemy2);
         this.name = name;
         this.width = width;
         this.height = height;
@@ -59,7 +74,7 @@ public class Level implements GenericLevel {
         }
     }
 
-    public void moveEnemy() throws InterruptedException {
+    public void moveEnemy() {
         if(enemy1.getChars().get(0).getPosition().getX()==3){
             borderLeft = true;
             enemy1.moveDown();
@@ -78,11 +93,9 @@ public class Level implements GenericLevel {
             enemy1.moveRight();
             enemy2.moveRight();
         }
-
         else {
             enemy1.moveLeft();
             enemy2.moveLeft();
         }
     }
-
 }

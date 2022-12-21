@@ -20,6 +20,7 @@ public class GameTest {
     @Test
     void stop() {
         game_.stop();
+
         Assertions.assertEquals(game_.status, GameStatus.STOPPED);
     }
 }
