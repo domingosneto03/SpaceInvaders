@@ -79,6 +79,7 @@ public class Game {
         return ACTION.NONE;
     }
     public void run() throws IOException, InterruptedException {
+        status = GameStatus.RUNNING;
         while(isGameRunning()) {
             draw(level);
             try {

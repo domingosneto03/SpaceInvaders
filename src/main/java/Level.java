@@ -3,7 +3,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.io.IOException;
 
-public class Level implements GenericLevel{
+public class Level implements GenericLevel {
 
     private String name;
     private int width;
