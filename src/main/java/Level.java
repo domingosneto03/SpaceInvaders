@@ -73,16 +73,30 @@ public class Level implements GenericLevel {
                 break;
         }
     }
-
+    public void checkColisionsEnemys(){
+        for(Enemy e : enemys){
+            for(Char b : player.getBullets()){
+                if(e.checkColision(b)==true){
+                    try {
+                        e.setChars(loader.getExplosionChars(e.getI().getX(),e.getI().getY()));
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    e.sortElementChars();
+                }
+            }
+        }
+    }
     public void moveEnemy() {
-        if(enemy1.getChars().get(0).getPosition().getX()==3){
+        checkColisionsEnemys();
+        if(enemys.get(0).getChars().get(0).getPosition().getX()==3){
             borderLeft = true;
             enemy1.moveDown();
             enemy2.moveDown();
             enemy2.moveRight();
             enemy1.moveRight();
         }
-        if(enemy2.getChars().get(enemy2.getChars().size()-1).getPosition().getX()==width-1){
+        if(enemys.get(enemys.size()-1).getChars().get(enemys.get(enemys.size()-1).getChars().size()-1).getPosition().getX()==width-1){
             borderLeft = false;
             enemy1.moveDown();
             enemy2.moveDown();

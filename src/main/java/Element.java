@@ -10,6 +10,9 @@ public class Element implements GenericChar {
 
     public void setChars(List<Char> chars) {
         Chars = chars;
+        sortElementChars();
+        i = Chars.get(0).getPosition();
+        f = Chars.get(Chars.size()-1).getPosition();
     }
 
     protected List<Char> bullets;
