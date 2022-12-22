@@ -1,6 +1,8 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Element implements GenericChar {
@@ -26,6 +28,7 @@ public class Element implements GenericChar {
 
     Element(List<Char> Chars){
         this.Chars = Chars;
+        sortElementChars();
         bullets = new ArrayList<>();
         i = Chars.get(0).getPosition();
         f = Chars.get(Chars.size()-1).getPosition();
@@ -99,16 +102,25 @@ public class Element implements GenericChar {
         }
     }
 
-    public boolean checkColision(Char b){
-            int bx = b.getPosition().getX();
-            int by = b.getPosition().getY();
-            int exi = i.getX();
-            int eyi = i.getY();
-            int exf = f.getX();
-            int eyf = f.getY();
-            if(bx > exi && bx < exf && by>eyi && by>eyf){
-                return true;
-            }
+    public boolean checkColision(Char b) {
+        int bx = b.getPosition().getX();
+        int by = b.getPosition().getY();
+        int exi = i.getX();
+        int eyi = i.getY();
+        int exf = f.getX();
+        int eyf = f.getY();
+        if ((bx >= exi && bx <= exf) && (by >= eyi && by <= eyf)) {
+            return true;
+        }
         return false;
+    }
+
+    public void sortElementChars() {
+        Collections.sort(Chars, (c1, c2) -> {
+            if (c1.getPosition().getX() == c2.getPosition().getX()) {
+                return c1.getPosition().getY() - c2.getPosition().getY();
+            }
+            return c1.getPosition().getX() - c2.getPosition().getX();
+        });
     }
 }
