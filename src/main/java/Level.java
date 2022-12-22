@@ -49,8 +49,9 @@ public class Level implements GenericLevel {
         graphics.fillRectangle(new TerminalPosition(0, 0), graphics.getSize(), ' ');
         player.draw(graphics);
         player.bulletMove(graphics);
-        enemy1.draw(graphics);
-        enemy2.draw(graphics);
+        for(Enemy e : enemys){
+            e.draw(graphics);
+        }
 
     }
 
@@ -74,14 +75,12 @@ public class Level implements GenericLevel {
         }
     }
     public void checkColisionsEnemys(){
-        for(Enemy e : enemys){
+        for(int i = 0; i<enemys.size();i++){
+            var e = enemys.get(i);
             for(Char b : player.getBullets()){
                 if(e.checkColision(b)==true){
-                    try {
-                        e.setChars(loader.getExplosionChars(e.getI().getX(),e.getI().getY()));
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                        i++;
+                        enemys.remove(e);
                     e.sortElementChars();
                 }
             }
@@ -89,27 +88,28 @@ public class Level implements GenericLevel {
     }
     public void moveEnemy() {
         checkColisionsEnemys();
-        if(enemys.get(0).getChars().get(0).getPosition().getX()==3){
-            borderLeft = true;
-            enemy1.moveDown();
-            enemy2.moveDown();
-            enemy2.moveRight();
-            enemy1.moveRight();
-        }
-        if(enemys.get(enemys.size()-1).getChars().get(enemys.get(enemys.size()-1).getChars().size()-1).getPosition().getX()==width-1){
-            borderLeft = false;
-            enemy1.moveDown();
-            enemy2.moveDown();
-            enemy1.moveLeft();
-            enemy2.moveLeft();
-        }
-        if(borderLeft == true){
-            enemy1.moveRight();
-            enemy2.moveRight();
-        }
-        else {
-            enemy1.moveLeft();
-            enemy2.moveLeft();
+        if (enemys.size() > 0) {
+            if (enemys.get(0).getChars().get(0).getPosition().getX() == 3) {
+                borderLeft = true;
+                enemy1.moveDown();
+                enemy2.moveDown();
+                enemy2.moveRight();
+                enemy1.moveRight();
+            }
+            if (enemys.get(enemys.size() - 1).getChars().get(enemys.get(enemys.size() - 1).getChars().size() - 1).getPosition().getX() == width - 1) {
+                borderLeft = false;
+                enemy1.moveDown();
+                enemy2.moveDown();
+                enemy1.moveLeft();
+                enemy2.moveLeft();
+            }
+            if (borderLeft == true) {
+                enemy1.moveRight();
+                enemy2.moveRight();
+            } else {
+                enemy1.moveLeft();
+                enemy2.moveLeft();
+            }
         }
     }
 }
