@@ -93,16 +93,7 @@ public class Element implements GenericChar {
     }
 
     public void bulletMove(TextGraphics graphics){
-        for (int i = 0; i < bullets.size(); i++){
-            if(bullets.get(i).getPosition().getY()>0) {
-                bullets.get(i).draw(graphics);
-                bullets.get(i).moveUp();
-            }
-            else {
-                bullets.remove(i);
-                i--;
-            }
-        }
+
     }
 
     public boolean checkColision(Char b) {

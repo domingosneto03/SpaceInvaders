@@ -233,8 +233,6 @@ public class LevelLoader {
         br_enemy26 = new BufferedReader(new FileReader(enemy26.getFile()));
         URL enemy27 = LevelLoader.class.getResource("/elements/enemy27_.txt");
         br_enemy27 = new BufferedReader(new FileReader(enemy27.getFile()));
-        URL explosion = LevelLoader.class.getResource("/elements/explosion.txt");
-        br_explosion = new BufferedReader(new FileReader(explosion.getFile()));
     }
 
     private List<String> readLines(BufferedReader br) throws IOException {

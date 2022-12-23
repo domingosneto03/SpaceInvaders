@@ -13,9 +13,6 @@ public class Level implements GenericLevel {
 
     private boolean borderLeft;
     private Player player;
-    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9,
-            enemy10, enemy11, enemy12, enemy13, enemy14, enemy15, enemy16, enemy17, enemy18, enemy19,
-            enemy20, enemy21, enemy22, enemy23, enemy24, enemy25, enemy26, enemy27;
 
     private List<Enemy> enemys;
     private Element winner, loser;
@@ -61,33 +58,33 @@ public class Level implements GenericLevel {
         loser = new Element(l2);
         this.player = new Player(loader.getPlayerChars(49,32));
         this.enemys = new ArrayList<>();
-        this.enemy1 = new Enemy(loader.getEnemy1Chars(0,0)); enemys.add(enemy1);
-        this.enemy2 = new Enemy(loader.getEnemy2Chars(9,0)); enemys.add(enemy2);
-        this.enemy3 = new Enemy(loader.getEnemy3Chars(18, 0)); enemys.add(enemy3);
-        this.enemy4 = new Enemy(loader.getEnemy4Chars(27,0)); enemys.add(enemy4);
-        this.enemy5 = new Enemy(loader.getEnemy5Chars(36,0)); enemys.add(enemy5);
-        this.enemy6 = new Enemy(loader.getEnemy6Chars(45, 0)); enemys.add(enemy6);
-        this.enemy7 = new Enemy(loader.getEnemy7Chars(54, 0)); enemys.add(enemy7);
-        this.enemy8 = new Enemy(loader.getEnemy8Chars(63,0)); enemys.add(enemy8);
-        this.enemy9 = new Enemy(loader.getEnemy9Chars(72,0)); enemys.add(enemy9);
-        this.enemy10 = new Enemy(loader.getEnemy10Chars(0,3)); enemys.add(enemy10);
-        this.enemy11 = new Enemy(loader.getEnemy11Chars(9,3)); enemys.add(enemy11);
-        this.enemy12 = new Enemy(loader.getEnemy12Chars(18,3)); enemys.add(enemy12);
-        this.enemy13 = new Enemy(loader.getEnemy13Chars(27, 3)); enemys.add(enemy13);
-        this.enemy14 = new Enemy(loader.getEnemy14Chars(36,3)); enemys.add(enemy14);
-        this.enemy15 = new Enemy(loader.getEnemy15Chars(45,3)); enemys.add(enemy15);
-        this.enemy16 = new Enemy(loader.getEnemy16Chars(54, 3)); enemys.add(enemy16);
-        this.enemy17 = new Enemy(loader.getEnemy17Chars(63, 3)); enemys.add(enemy17);
-        this.enemy18 = new Enemy(loader.getEnemy18Chars(72,3)); enemys.add(enemy18);
-        this.enemy19 = new Enemy(loader.getEnemy19Chars(0,6)); enemys.add(enemy19);
-        this.enemy20 = new Enemy(loader.getEnemy20Chars(9,6)); enemys.add(enemy20);
-        this.enemy21 = new Enemy(loader.getEnemy21Chars(18,6)); enemys.add(enemy21);
-        this.enemy22 = new Enemy(loader.getEnemy22Chars(27,6)); enemys.add(enemy22);
-        this.enemy23 = new Enemy(loader.getEnemy23Chars(36, 6)); enemys.add(enemy23);
-        this.enemy24 = new Enemy(loader.getEnemy24Chars(45,6)); enemys.add(enemy24);
-        this.enemy25 = new Enemy(loader.getEnemy25Chars(54,6)); enemys.add(enemy25);
-        this.enemy26 = new Enemy(loader.getEnemy26Chars(63, 6)); enemys.add(enemy26);
-        this.enemy27 = new Enemy(loader.getEnemy27Chars(72, 6)); enemys.add(enemy27);
+        Enemy enemy1 = new Enemy(loader.getEnemy1Chars(0,0)); enemys.add(enemy1);
+        Enemy enemy2 = new Enemy(loader.getEnemy2Chars(9,0)); enemys.add(enemy2);
+        Enemy enemy3 = new Enemy(loader.getEnemy3Chars(18, 0)); enemys.add(enemy3);
+        Enemy enemy4 = new Enemy(loader.getEnemy4Chars(27,0)); enemys.add(enemy4);
+        Enemy enemy5 = new Enemy(loader.getEnemy5Chars(36,0)); enemys.add(enemy5);
+        Enemy enemy6 = new Enemy(loader.getEnemy6Chars(45, 0)); enemys.add(enemy6);
+        Enemy enemy7 = new Enemy(loader.getEnemy7Chars(54, 0)); enemys.add(enemy7);
+        Enemy enemy8 = new Enemy(loader.getEnemy8Chars(63,0)); enemys.add(enemy8);
+        Enemy enemy9 = new Enemy(loader.getEnemy9Chars(72,0)); enemys.add(enemy9);
+        Enemy enemy10 = new Enemy(loader.getEnemy10Chars(0,3)); enemys.add(enemy10);
+        Enemy enemy11 = new Enemy(loader.getEnemy11Chars(9,3)); enemys.add(enemy11);
+        Enemy enemy12 = new Enemy(loader.getEnemy12Chars(18,3)); enemys.add(enemy12);
+        Enemy enemy13 = new Enemy(loader.getEnemy13Chars(27, 3)); enemys.add(enemy13);
+        Enemy enemy14 = new Enemy(loader.getEnemy14Chars(36,3)); enemys.add(enemy14);
+        Enemy enemy15 = new Enemy(loader.getEnemy15Chars(45,3)); enemys.add(enemy15);
+        Enemy enemy16 = new Enemy(loader.getEnemy16Chars(54, 3)); enemys.add(enemy16);
+        Enemy enemy17 = new Enemy(loader.getEnemy17Chars(63, 3)); enemys.add(enemy17);
+        Enemy enemy18 = new Enemy(loader.getEnemy18Chars(72,3)); enemys.add(enemy18);
+        Enemy enemy19 = new Enemy(loader.getEnemy19Chars(0,6)); enemys.add(enemy19);
+        Enemy enemy20 = new Enemy(loader.getEnemy20Chars(9,6)); enemys.add(enemy20);
+        Enemy enemy21 = new Enemy(loader.getEnemy21Chars(18,6)); enemys.add(enemy21);
+        Enemy enemy22 = new Enemy(loader.getEnemy22Chars(27,6)); enemys.add(enemy22);
+        Enemy enemy23 = new Enemy(loader.getEnemy23Chars(36, 6)); enemys.add(enemy23);
+        Enemy enemy24 = new Enemy(loader.getEnemy24Chars(45,6)); enemys.add(enemy24);
+        Enemy enemy25 = new Enemy(loader.getEnemy25Chars(54,6)); enemys.add(enemy25);
+        Enemy enemy26 = new Enemy(loader.getEnemy26Chars(63, 6)); enemys.add(enemy26);
+        Enemy enemy27 = new Enemy(loader.getEnemy27Chars(72, 6)); enemys.add(enemy27);
         this.name = name;
         this.width = width;
         this.height = height;
@@ -140,7 +137,7 @@ public class Level implements GenericLevel {
             }
         }
     }
-    public int getRightEnemyBorder() { //esta função é pq o moveEnemy bugava se matarmos o ultimo alien
+    public int getRightEnemyBorder() {
         int x = 0;
         for (Enemy e : enemys) {
             if (e.f.getX() > x) {x = e.f.getX();}
@@ -148,7 +145,7 @@ public class Level implements GenericLevel {
         return x;
     }
 
-    public int getLeftEnemyBorder() { //esta função é pq o moveEnemy bugava se matarmos o primeiro alien
+    public int getLeftEnemyBorder() {
         int x = 150;
         for (Enemy e : enemys) {
             if (e.i.getX() < x) {x = e.i.getX();}
