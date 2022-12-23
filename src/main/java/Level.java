@@ -4,6 +4,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Level implements GenericLevel {
 
@@ -14,8 +15,11 @@ public class Level implements GenericLevel {
     private boolean borderLeft;
     private Player player;
 
+    int lives;
+
+    Random random = new Random();
+
     private List<Enemy> enemys;
-    private Element winner, loser;
 
     private LevelLoader loader;
 
@@ -41,21 +45,7 @@ public class Level implements GenericLevel {
     public Level(String name, int width, int height, TextGraphics graphics) throws IOException {
         this.graphics = graphics;
         this.loader = new LevelLoader();
-        List<Char> l = new ArrayList<>();
-        List<Char> l2 = new ArrayList<>();
-        l.add(new Char('W', "#FFFFFF", new Position(48, 15)));
-        l.add(new Char('I', "#FFFFFF", new Position(49, 15)));
-        l.add(new Char('N', "#FFFFFF", new Position(50, 15)));
-        l.add(new Char('N', "#FFFFFF", new Position(51, 15)));
-        l.add(new Char('E', "#FFFFFF", new Position(52, 15)));
-        l.add(new Char('R', "#FFFFFF", new Position(53, 15)));
-        l2.add(new Char('L', "#FFFFFF", new Position(49, 5)));
-        l2.add(new Char('O', "#FFFFFF", new Position(50, 5)));
-        l2.add(new Char('S', "#FFFFFF", new Position(51, 5)));
-        l2.add(new Char('E', "#FFFFFF", new Position(52, 5)));
-        l2.add(new Char('R', "#FFFFFF", new Position(53, 5)));
-        winner = new Element(l);
-        loser = new Element(l2);
+        lives = 3;
         this.player = new Player(loader.getPlayerChars(49,32));
         this.enemys = new ArrayList<>();
         Enemy enemy1 = new Enemy(loader.getEnemy1Chars(0,0)); enemys.add(enemy1);
@@ -95,17 +85,23 @@ public class Level implements GenericLevel {
         player.draw(graphics);
         player.bulletMove(graphics);
         for(Enemy e : enemys){
-            e.draw(graphics);
-            if (e.getChars().get(enemys.get(enemys.size() - 1).getChars().size() - 1).getPosition().getY() > 30) {
-                loser.draw(graphics);
+            if (e.getChars().get(enemys.get(enemys.size() - 1).getChars().size() - 1).getPosition().getY() > 31 || lives == 0) {
+                graphics.putString(48, 15, "LOSER");
+            }
+            else{
+                e.draw(graphics);
+                e.bulletMove(graphics);
+                String text = "Lives : " + Integer.toString(lives);
+                graphics.putString(80,34,text);
             }
         }
         if (enemys.size() == 0) {
-            winner.draw(graphics);
+            graphics.putString(48, 15, "WINNER");
         }
     }
 
     public void movePlayer(ACTION action) {
+        checkColisionsPlayer();
         switch (action) {
             case UP:
                 player.moveUp();
@@ -122,6 +118,19 @@ public class Level implements GenericLevel {
             case SELECT:
                 if (playerShootTimer()) {player.attack();}
                 break;
+        }
+    }
+    public void checkColisionsPlayer() {
+        for (Enemy e : enemys) {
+            if (e.getBullets().size() > 0) {
+                for (int i = 0; i < e.getBullets().size(); i++) {
+                    if (player.checkColision(e.getBullets().get(i))) {
+                        e.getBullets().remove(e.getBullets().get(i));
+                        i++;
+                        lives--;
+                    }
+                }
+            }
         }
     }
     public void checkColisionsEnemys(){
@@ -153,6 +162,10 @@ public class Level implements GenericLevel {
         return x;
     }
     public void moveEnemy() {
+        int n = random.nextInt(enemys.size());
+        if(enemyShootTimer()) {
+            enemys.get(n).attack();
+        }
         checkColisionsEnemys();
         if (enemyMoveTimer()) {
             if (enemys.size() > 0) {
@@ -197,6 +210,7 @@ public class Level implements GenericLevel {
     }
 
     private long lastPlayerShot = 0;
+
     public boolean playerShootTimer() {
         // check if enough time has passed (400 milisegundos podes ajustar)
         if (System.currentTimeMillis() - lastPlayerShot < 400) {
@@ -204,6 +218,16 @@ public class Level implements GenericLevel {
         }
         // if we waited long enough, allow the shot
         lastPlayerShot = System.currentTimeMillis();
+        return true;
+    }
+
+    private long lastEnemyShot = 0;
+    public boolean enemyShootTimer() {
+        if (System.currentTimeMillis() - lastEnemyShot < 500) {
+            return false;
+        }
+        // if we waited long enough, allow the shot
+        lastEnemyShot = System.currentTimeMillis();
         return true;
     }
 }

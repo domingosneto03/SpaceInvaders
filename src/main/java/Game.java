@@ -1,4 +1,5 @@
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -6,6 +7,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -14,6 +16,8 @@ public class Game {
     protected volatile GameStatus status;
     private GenericLevel level;
     private Screen screen;
+
+    private TextGraphics graphics;
 
 
     private Screen createScreen(Terminal terminal) throws IOException {
@@ -39,7 +43,8 @@ public class Game {
         status = GameStatus.RUNNING;
         Terminal terminal = createTerminal(100, 35);
         this.screen = createScreen(terminal);
-        level = new Level("Tutorial",100,35, screen.newTextGraphics());
+        graphics = screen.newTextGraphics();
+        level = new Level("Tutorial",100,35, graphics);
 
     }
     private void draw(GenericLevel level) throws IOException {
@@ -87,9 +92,9 @@ public class Game {
                 break;
             }
             if (level.getEnemys().get(level.getEnemys().size() - 1).getChars().get(level.getEnemys().get(level.getEnemys().size()
-                    - 1).getChars().size() - 1).getPosition().getY() > 30) {
+                    - 1).getChars().size() - 1).getPosition().getY() > 31) {
+                status = GameStatus.STOPPED;
                 Thread.sleep(5000);
-                break;
             }
             try {
                 Thread.sleep(1000/60);
