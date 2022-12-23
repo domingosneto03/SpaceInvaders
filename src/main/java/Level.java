@@ -31,6 +31,14 @@ public class Level implements GenericLevel {
         return enemys;
     }
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setEnemys(List<Enemy> enemys) {
+        this.enemys = enemys;
+    }
+
     public Level(String name, int width, int height, TextGraphics graphics) throws IOException {
         this.graphics = graphics;
         this.loader = new LevelLoader();
