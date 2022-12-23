@@ -20,7 +20,7 @@ This project was developed by *Luís Contreiras* (*up202108742*@fe.up.pt), *Diog
 **Collisions** - To reduce the complexity of the collisions every element has a
 collision box.
 
-[!gif](docs/gifs/spaceinvaders.gif)
+![Alt Text](docs/gifs/spaceinvaders.gif)
 
 ### DESIGN
 
