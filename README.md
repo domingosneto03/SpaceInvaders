@@ -155,8 +155,8 @@ The end of the game functions both in `Game` and `Level` is confusing and could 
 Coverage:
 ![img](docs/images/Coverage.jpg)
 
-Mutations:
-    build/reports/pitest/index.html
+Mutations: 
+docs/pitest/index.html
 
 ------- 
 
