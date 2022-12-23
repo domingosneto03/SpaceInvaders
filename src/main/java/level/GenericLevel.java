@@ -1,3 +1,8 @@
+package level;
+
+import enums.ACTION;
+import elements.Enemy;
+
 import java.util.List;
 
 public interface GenericLevel{

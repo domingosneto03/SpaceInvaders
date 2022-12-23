@@ -9,15 +9,15 @@
 
 > **Movement** - The spaceship moves freely inside the borders of the screen with the arrow keys.
 > **Attack** - When the user clicks space the spaceship throws a bullet that will affect alien spaceships.
-> **Enemy's** - Creation of enemy ships.
+> **elements.Enemy's** - Creation of enemy ships.
 
 
 ### PLANNED FEATURES
 
 > **Damage** - When the spaceship gets attacked it loses the char that was damaged until there are no char members left.
 > **Alien Attack** - Aliens may throw different kinds of bullets with different sizes and movement patterns.
-> **SpaceShip Upgrade** - Every level the spaceship will be upgraded with more chars (more lives).
-> **Enemy's difficulty** - Every level will increase the difficulty of the game by modifying the characteristics of the enemy´s spaceships.
+> **SpaceShip Upgrade** - Every elements the spaceship will be upgraded with more chars (more lives).
+> **elements.Enemy's difficulty** - Every elements will increase the difficulty of the game by modifying the characteristics of the enemy´s spaceships.
 
 ------
 
@@ -31,7 +31,7 @@ A UML class diagram showcasing used Design Patterns:
 
 ### DESIGN PATTERNS
 
->**Implemented:** We have implemented the **Composite Design Pattern** in the functioning of our **Element** and **Char** classes, both have **draw()** and **move()** methods that run correctly either if we take an individual approach of moving a single **Char** or a collective approach of moving all characters that constitute an **Element**.
+>**Implemented:** We have implemented the **Composite Design Pattern** in the functioning of our **elements.Element** and **elements.Char** classes, both have **draw()** and **move()** methods that run correctly either if we take an individual approach of moving a single **elements.Char** or a collective approach of moving all characters that constitute an **elements.Element**.
 
 
 >**To Implement:** We plan on implementing the **Strategy Design Pattern** to our **Bullet** class, in order to create different types of bullets.

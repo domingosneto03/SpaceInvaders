@@ -1,3 +1,8 @@
+package level;
+
+import elements.Char;
+import elements.Position;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,7 +13,7 @@ import java.util.List;
 public class LevelLoader {
     BufferedReader br_player;
 
-    public List<Char> getPlayerChars(int x,int y) throws IOException {
+    public List<Char> getPlayerChars(int x, int y) throws IOException {
         return createElement(readLines(br_player),x,y);
     }
 
@@ -55,7 +60,7 @@ public class LevelLoader {
 
     BufferedReader br_enemy8;
 
-    public List<Char> getEnemy8Chars(int x,int y) throws IOException {
+    public List<Char> getEnemy8Chars(int x, int y) throws IOException {
         return createElement(readLines(br_enemy8),x,y);
     }
 

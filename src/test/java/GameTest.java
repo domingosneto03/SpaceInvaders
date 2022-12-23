@@ -1,3 +1,5 @@
+import enums.GameStatus;
+import gui.Game;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,13 +16,13 @@ public class GameTest {
 
     @Test
     void run() {
-        Assertions.assertEquals(game_.status, GameStatus.RUNNING);
+        Assertions.assertEquals(game_.isGameRunning(), true);
     }
 
     @Test
     void stop() {
         game_.stop();
 
-        Assertions.assertEquals(game_.status, GameStatus.STOPPED);
+        Assertions.assertEquals(game_.isGameRunning(), false);
     }
 }

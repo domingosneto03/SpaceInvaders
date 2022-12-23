@@ -1,3 +1,5 @@
+import gui.Game;
+
 import java.io.IOException;
 
 public class Application {

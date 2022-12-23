@@ -1,3 +1,6 @@
+import elements.Char;
+import elements.Player;
+import elements.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

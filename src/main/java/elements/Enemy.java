@@ -1,10 +1,11 @@
+package elements;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Enemy extends Element{
-    Enemy(List<Char> genericChars) {
+public class Enemy extends Element {
+    public Enemy(List<Char> genericChars) {
         super(genericChars);
     }
 

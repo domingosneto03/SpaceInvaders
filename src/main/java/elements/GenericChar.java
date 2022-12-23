@@ -1,3 +1,5 @@
+package elements;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public interface GenericChar {

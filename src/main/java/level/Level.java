@@ -1,5 +1,11 @@
+package level;
+
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import enums.ACTION;
+import elements.Char;
+import elements.Enemy;
+import elements.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -149,7 +155,7 @@ public class Level implements GenericLevel {
     public int getRightEnemyBorder() {
         int x = 0;
         for (Enemy e : enemys) {
-            if (e.f.getX() > x) {x = e.f.getX();}
+            if (e.getF().getX() > x) {x = e.getF().getX();}
         }
         return x;
     }
@@ -157,7 +163,7 @@ public class Level implements GenericLevel {
     public int getLeftEnemyBorder() {
         int x = 150;
         for (Enemy e : enemys) {
-            if (e.i.getX() < x) {x = e.i.getX();}
+            if (e.getI().getX() < x) {x = e.getI().getX();}
         }
         return x;
     }

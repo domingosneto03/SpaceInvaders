@@ -1,3 +1,5 @@
+package elements;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class Element implements GenericChar {
         f = Chars.get(Chars.size()-1).getPosition();
     }
 
-    Element(List<Char> Chars){
+    public Element(List<Char> Chars){
         this.Chars = Chars;
         sortElementChars();
         bullets = new ArrayList<>();

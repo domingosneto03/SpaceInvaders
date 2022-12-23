@@ -1,3 +1,5 @@
+package gui;
+
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -7,7 +9,10 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
-import org.w3c.dom.Text;
+import level.GenericLevel;
+import level.Level;
+import enums.ACTION;
+import enums.GameStatus;
 
 import java.io.IOException;
 
