@@ -82,6 +82,15 @@ public class Game {
         status = GameStatus.RUNNING;
         while(isGameRunning()) {
             draw(level);
+            if (level.getEnemys().size() == 0) {
+                Thread.sleep(5000);
+                break;
+            }
+            if (level.getEnemys().get(level.getEnemys().size() - 1).getChars().get(level.getEnemys().get(level.getEnemys().size()
+                    - 1).getChars().size() - 1).getPosition().getY() > 30) {
+                Thread.sleep(5000);
+                break;
+            }
             try {
                 Thread.sleep(1000/60);
             } catch (InterruptedException e) {

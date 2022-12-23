@@ -57,12 +57,12 @@ class MovementTest {
     @Test
     void moveLeftTrapped() {
         p3.moveLeft();
-        Assertions.assertEquals(p3.getChars().get(0).getPosition(), new Position(2, 25));
+        Assertions.assertEquals(p3.getChars().get(0).getPosition(), new Position(1, 25));
     }
 
     @Test
     void moveRightTrapped() {
         p4.moveRight();
-        Assertions.assertEquals(p4.getChars().get(0).getPosition(), new Position(93, 25));
+        Assertions.assertEquals(p4.getChars().get(0).getPosition(), new Position(94, 25));
     }
 }
