@@ -1,3 +1,5 @@
+package elements;
+
 import elements.Char;
 import elements.Enemy;
 import elements.Player;
