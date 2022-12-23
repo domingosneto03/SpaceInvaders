@@ -38,6 +38,16 @@ public class Char implements GenericChar {
         this.position = position;
     }
 
+    public void lock() {
+        final Position p1 = new Position(-1, -1);
+        this.setPosition(p1);
+    }
+
+    public void setPosition(Position p) {
+
+        this.position = p;
+    }
+
     public Position getPosition() {
         return position;
     }

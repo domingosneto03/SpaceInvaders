@@ -2,20 +2,13 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Element implements GenericChar {
     protected List<Char> Chars;
 
-    public void setChars(List<Char> chars) {
-        Chars = chars;
-        sortElementChars();
-        i = Chars.get(0).getPosition();
-        f = Chars.get(Chars.size()-1).getPosition();
-    }
-
     protected List<Char> bullets;
+    protected List<Char> removedBullets;
 
     protected Position i;
 
@@ -29,14 +22,21 @@ public class Element implements GenericChar {
         return f;
     }
 
-    Element(List<Char> Chars){
-        this.Chars = Chars;
+    public void setChars(List<Char> chars) {
+        Chars = chars;
         sortElementChars();
-        bullets = new ArrayList<>();
         i = Chars.get(0).getPosition();
         f = Chars.get(Chars.size()-1).getPosition();
     }
 
+    Element(List<Char> Chars){
+        this.Chars = Chars;
+        sortElementChars();
+        bullets = new ArrayList<>();
+        removedBullets = new ArrayList<>();
+        i = Chars.get(0).getPosition();
+        f = Chars.get(Chars.size()-1).getPosition();
+    }
     @Override
     public void moveUp() {
         for(GenericChar c : Chars){
@@ -58,7 +58,7 @@ public class Element implements GenericChar {
 
     @Override
     public void moveLeft() {
-        if (i.getX()<3) {return;}
+        if (i.getX()<0) {return;}
         for(GenericChar c : Chars){
             c.moveLeft();
         }
@@ -68,7 +68,7 @@ public class Element implements GenericChar {
 
     @Override
     public void moveRight() {
-        if (i.getX()>92) {return;}
+        if (i.getX()>93) {return;}
         for(GenericChar c : Chars){
             c.moveRight();
         }
@@ -93,16 +93,7 @@ public class Element implements GenericChar {
     }
 
     public void bulletMove(TextGraphics graphics){
-        for (int i = 0; i < bullets.size(); i++){
-            if(bullets.get(i).getPosition().getY()>0) {
-                bullets.get(i).draw(graphics);
-                bullets.get(i).moveUp();
-            }
-            else {
-                bullets.remove(i);
-                i--;
-            }
-        }
+
     }
 
     public boolean checkColision(Char b) {
@@ -112,10 +103,7 @@ public class Element implements GenericChar {
         int eyi = i.getY();
         int exf = f.getX();
         int eyf = f.getY();
-        if ((bx >= exi && bx <= exf) && (by >= eyi && by <= eyf)) {
-            return true;
-        }
-        return false;
+        return (bx >= exi && bx <= exf) && (by >= eyi && by <= eyf);
     }
 
     public void sortElementChars() {
