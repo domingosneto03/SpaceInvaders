@@ -49,7 +49,7 @@ public class Game {
         Terminal terminal = createTerminal(100, 35);
         this.screen = createScreen(terminal);
         graphics = screen.newTextGraphics();
-        level = new Level("Tutorial",100,35, graphics);
+        level = new Level("Level 1",100,35, graphics);
 
     }
     private void draw(GenericLevel level) throws IOException {
